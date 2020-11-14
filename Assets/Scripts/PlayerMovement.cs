@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.U2D;
 using UnityEngine.XR.WSA;
@@ -6,15 +7,17 @@ using UnityEngine.XR.WSA;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    [Range(1f, 10f)]
-    private float movementSpeed;
-
+    [Range(1f, 100f)]
+    private float maxMovementSpeed = 1f;
+    [SerializeField]
+    [Range(1f, 100f)]
+    private float accelerationMultiplier = 20f;
+    
     private float _boundaryMargin = .5f;
     
-    
+    private Vector2 _movement = Vector2.zero;
     private float _horizontalMove;
     private float _verticalMove;
-    private Vector2 _velocity = Vector3.zero;
 
     private Camera _mainCam;
     private float _camWidth;
@@ -35,13 +38,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * movementSpeed;
-        _verticalMove = Input.GetAxisRaw("Vertical") * movementSpeed;
+        _movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     private void FixedUpdate()
     {
-        Move(_horizontalMove, _verticalMove);
+        Move(_movement);
         CheckBoundaries();
     }
 
@@ -73,14 +75,10 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos;
     }
 
-    private void Move(float horizontal, float vertical)
+    private void Move(Vector2 movement)
     {
-        if (horizontal == 0 & vertical == 0)
-        {
-            _rigidbody2D.velocity = Vector2.SmoothDamp(_rigidbody2D.velocity, Vector2.zero, ref _velocity, .2f);
-        } else {
-            Vector2 targetVelocity = new Vector2(horizontal + _rigidbody2D.velocity.x, vertical + _rigidbody2D.velocity.y);
-            _rigidbody2D.velocity = Vector2.SmoothDamp(_rigidbody2D.velocity, targetVelocity, ref _velocity, .05f);
-        }
+        _rigidbody2D.AddForce(movement * accelerationMultiplier);
+        _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, maxMovementSpeed);
+        
     }
 }
