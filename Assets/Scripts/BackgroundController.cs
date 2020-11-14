@@ -20,7 +20,8 @@ public class BackgroundController : MonoBehaviour
     {
         if (_currentBackground.isNearEnd() && _nextBackground == null)
         {
-            instantiateNextBackground();
+            //instantiateNextBackground();
+            EventManager.Instance.OnLevelFinished.Invoke();
         } 
         else if (_currentBackground.isOutOfCamFocus())
         {
@@ -30,10 +31,10 @@ public class BackgroundController : MonoBehaviour
         }
     }
 
-    private void instantiateNextBackground()
+    public void InstantiateNextBackground()
     {
         _nextBackground = Instantiate(backgroundPrefab);
-        float nextPosX = _currentBackground.transform.position.x + (_currentBackground.BackgroundImageWidth / 2);
+        float nextPosX = _currentBackground.transform.position.x + _currentBackground.BackgroundImageWidth;
 
         Vector3 nextPos = _nextBackground.transform.position;
         nextPos.x = nextPosX;
@@ -43,7 +44,7 @@ public class BackgroundController : MonoBehaviour
 
     }
 
-    public void startScrolling()
+    public void StartScrolling()
     {
         if (_currentBackground != null)
         {
@@ -56,7 +57,7 @@ public class BackgroundController : MonoBehaviour
         } 
     }
 
-    public void stopScrolling()
+    public void StopScrolling()
     {
         if (_currentBackground != null)
         {

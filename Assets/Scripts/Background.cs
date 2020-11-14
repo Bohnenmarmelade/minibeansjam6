@@ -33,9 +33,6 @@ public class Background : MonoBehaviour
         camLeftEdgePosX = (camWidth / 2) - Camera.main.transform.position.x;
         _backgroundImageWidth = spriteRenderer.bounds.size.x;
         float backgroundStartPosX = -camLeftEdgePosX + (_backgroundImageWidth / 2);
-
-        Debug.Log(_backgroundImageWidth);
-        Debug.Log(backgroundStartPosX);
         transform.position = new Vector2(backgroundStartPosX - 1, 0f);
         
         //calculate position where camera starts to lose background
@@ -60,7 +57,7 @@ public class Background : MonoBehaviour
 
     public bool isOutOfCamFocus()
     {
-        return transform.position.x + (_backgroundImageWidth / 2) < camLeftEdgePosX;
+        return transform.position.x + (_backgroundImageWidth / 2) < -camLeftEdgePosX;
     }
 
 }
