@@ -204,7 +204,11 @@ public class ItemGenerator : MonoBehaviour
             firstGeneration = false;
             return true;
         }
-        
+
+        if (!generatedItem)
+        {
+            return true;
+        }
         return generatedItem.transform.position.x < generationPoint.transform.position.x - itemWidth - minHorizontalDistanceBetweenItems - generatedAdditionalHorizontalDistance;
     }
 

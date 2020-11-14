@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 168841894361756191}
   - component: {fileID: 168841894361756190}
   - component: {fileID: 168841894361756192}
+  - component: {fileID: 6382932083571475239}
+  - component: {fileID: 4425766728991970009}
   - component: {fileID: 168841894361756193}
   - component: {fileID: 734215074}
   - component: {fileID: 7894120648185983126}
-  - component: {fileID: 6382932083571475239}
-  - component: {fileID: 4425766728991970009}
   m_Layer: 0
   m_Name: Whale
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 9d4a178ae4448374cb5bb9fd457c53a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,6 +101,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMovementSpeed: 50
   accelerationMultiplier: 30
+--- !u!114 &6382932083571475239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168841894361756189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc82370728bfb5b479bc72a70fef69ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfFoodUntilAdult: 10
+  foodEaten: 0
+  adult: 0
+--- !u!114 &4425766728991970009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168841894361756189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef812e2a5e01554c93c7f9376bf305c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!50 &168841894361756193
 Rigidbody2D:
   serializedVersion: 4
@@ -151,7 +179,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -167,31 +195,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6382932083571475239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168841894361756189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc82370728bfb5b479bc72a70fef69ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfFoodUntilAdult: 10
-  foodEaten: 0
-  adult: 0
---- !u!114 &4425766728991970009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168841894361756189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eef812e2a5e01554c93c7f9376bf305c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3

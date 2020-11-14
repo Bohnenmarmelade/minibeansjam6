@@ -51,12 +51,22 @@ MonoBehaviour:
   - {fileID: 5071127376695194348, guid: 220a60d93da82db41824a666f58d9ff2, type: 3}
   - {fileID: 5071127376695194348, guid: 1ee41d9bdb62b0d49a026bd0832c4e69, type: 3}
   - {fileID: 5071127376695194348, guid: f541f2e3d77f49f439fd46eeac686716, type: 3}
+  - {fileID: 1598868571603156714, guid: 47c6aff5aaf662346b849361be8de46c, type: 3}
+  - {fileID: 7150875076899395591, guid: 4d964f1a61af58a48be522660efd14ea, type: 3}
+  - {fileID: 6708110296862791107, guid: 0e0f00675731c544ea7c3dd8f96c77dd, type: 3}
+  - {fileID: 6589056767827871134, guid: bc3aa7f41ebc61a4fa975a82d5c03586, type: 3}
+  - {fileID: 5942834001678793255, guid: fafa8422979638e4f8d1cda1eebd5944, type: 3}
   garbageItemPrefabs:
   - {fileID: 5071127376695194348, guid: 3a197dc4a84806a409c38f646e398e89, type: 3}
   - {fileID: 5071127376695194348, guid: 22667d4dfd6049c42944291bfb4d1b5d, type: 3}
   - {fileID: 5071127376695194348, guid: e09815961858ff24eaad9fb129dec549, type: 3}
   - {fileID: 5071127376695194348, guid: 6e92747de55ccd241b16e734a31691ed, type: 3}
   - {fileID: 5071127376695194348, guid: 1b2143e47f83aa94d95b5e127548ea7e, type: 3}
+  - {fileID: 5097615288648277155, guid: cb4f5a4403128cc46811469da8fe3ee2, type: 3}
+  - {fileID: 1562343954098822465, guid: b1447c61714a9a14eb82ee5590a9c43c, type: 3}
+  - {fileID: 1448146899090586026, guid: eacf024425e672848addbee9f4623cfd, type: 3}
+  - {fileID: 4420413404457905286, guid: c63073dddd583be408aa73fc066c3198, type: 3}
+  - {fileID: 4241759507640902304, guid: 340cebe4c439f0e4fa87b00f46e4d3d4, type: 3}
   foodItemsToBeGenerated: 5
   numberOfFoodSpawnIntervals: 5
   distanceToBorders: 7

@@ -6,8 +6,9 @@ public class PlayerGrowth : MonoBehaviour
     [SerializeField] private int foodEaten = 0;
     [SerializeField] private bool adult = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("trigger");
         ItemController itemController = other.GetComponent<ItemController>();
         if (itemController != null && itemController.item is Food)
         {
