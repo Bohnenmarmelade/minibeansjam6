@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ItemGenerator : MonoBehaviour
 {
+    public LevelController LevelController;
     public Transform generationPoint;
-    public GameObject foodItemPrefab;
-    public GameObject garbageItemPrefab;
+    public List<GameObject> foodItemPrefabs = new List<GameObject>();
+    public List<GameObject> garbageItemPrefabs = new List<GameObject>();
     public int foodItemsToBeGenerated = 5;
     public int numberOfFoodSpawnIntervals = 5;
     public float distanceToBorders = 7f;
@@ -33,8 +33,8 @@ public class ItemGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemWidth = foodItemPrefab.GetComponent<BoxCollider2D>().size.x;
-        //TODO: get time of level
+        itemWidth = foodItemPrefabs[0].GetComponent<BoxCollider2D>().size.x;
+        levelTime = LevelController.LevelDuration();
         timeOfFoodSpawnInterval = levelTime / numberOfFoodSpawnIntervals;
         timeUntilNextFoodSpawn = Time.time + timeOfFoodSpawnInterval;
         foodItemsPerInterval = Mathf.CeilToInt(foodItemsToBeGenerated / numberOfFoodSpawnIntervals);
@@ -70,7 +70,7 @@ public class ItemGenerator : MonoBehaviour
         {
             foodItemsGeneratedInInterval++;
             // spawn an item anywhere between lower and upper bounds
-            generatedItem = SpawnItem(foodItemPrefab, 0, distanceToBorders);
+            generatedItem = SpawnItem(foodItemPrefabs[Random.Range(0, foodItemPrefabs.Count)], 0, distanceToBorders);
             return;
         }
         
@@ -147,14 +147,14 @@ public class ItemGenerator : MonoBehaviour
                 {
                     foodItemsGeneratedInInterval++;
                     UpdateFoodGeneration();
-                    prevGeneratedItem = SpawnItem(foodItemPrefab, lowerBound, upperBound);
+                    prevGeneratedItem = SpawnItem(foodItemPrefabs[Random.Range(0, foodItemPrefabs.Count)], lowerBound, upperBound);
                     break;
                 }
 
                 // generate garbage
                 case 0:
                 {
-                    prevGeneratedItem = SpawnItem(garbageItemPrefab, lowerBound, upperBound);
+                    prevGeneratedItem = SpawnItem(garbageItemPrefabs[Random.Range(0, garbageItemPrefabs.Count)], lowerBound, upperBound);
                     break;
                 }
             }
@@ -179,20 +179,18 @@ public class ItemGenerator : MonoBehaviour
             // generate food
             case 1:
             {
-                Debug.Log("generate food");
                 foodItemsGeneratedInInterval++;
                 UpdateFoodGeneration();
                 // spawn a food item anywhere between lower and upper bounds
-                generatedItem = SpawnItem(foodItemPrefab, 0, distanceToBorders);
+                generatedItem = SpawnItem(foodItemPrefabs[Random.Range(0, foodItemPrefabs.Count)], 0, distanceToBorders);
                 break;
             }
 
             // generate garbage
             case 0:
             {
-                Debug.Log("generate garbage");
                 // spawn a garbage item anywhere between lower and upper bounds
-                generatedItem = SpawnItem(garbageItemPrefab, 0, distanceToBorders);
+                generatedItem = SpawnItem(garbageItemPrefabs[Random.Range(0, garbageItemPrefabs.Count)], 0, distanceToBorders);
                 break;
             }
         }
@@ -232,7 +230,6 @@ public class ItemGenerator : MonoBehaviour
         //move item up or down depending on previously spawned platform
         go.transform.position += new Vector3(0, Random.Range(lowerBounds, upperBounds), 0);
 
-        Debug.Log("item spawned");
         return go;
     }
 }

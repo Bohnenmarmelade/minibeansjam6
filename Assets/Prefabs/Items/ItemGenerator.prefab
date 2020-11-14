@@ -43,11 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503ba434c6ac4c949bc9d2f3af821cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelController: {fileID: 0}
   generationPoint: {fileID: 4575010193326092801}
-  foodItemPrefab: {fileID: 5071127376695194348, guid: 35203edf2bf3e0847baf33d105a68bdc,
-    type: 3}
-  garbageItemPrefab: {fileID: 5071127376695194348, guid: 3a197dc4a84806a409c38f646e398e89,
-    type: 3}
+  foodItemPrefabs:
+  - {fileID: 5071127376695194348, guid: 35203edf2bf3e0847baf33d105a68bdc, type: 3}
+  - {fileID: 5071127376695194348, guid: dab6d47de83d66a4b97a43e456f499af, type: 3}
+  - {fileID: 5071127376695194348, guid: 220a60d93da82db41824a666f58d9ff2, type: 3}
+  - {fileID: 5071127376695194348, guid: 1ee41d9bdb62b0d49a026bd0832c4e69, type: 3}
+  - {fileID: 5071127376695194348, guid: f541f2e3d77f49f439fd46eeac686716, type: 3}
+  garbageItemPrefabs:
+  - {fileID: 5071127376695194348, guid: 3a197dc4a84806a409c38f646e398e89, type: 3}
+  - {fileID: 5071127376695194348, guid: 22667d4dfd6049c42944291bfb4d1b5d, type: 3}
+  - {fileID: 5071127376695194348, guid: e09815961858ff24eaad9fb129dec549, type: 3}
+  - {fileID: 5071127376695194348, guid: 6e92747de55ccd241b16e734a31691ed, type: 3}
+  - {fileID: 5071127376695194348, guid: 1b2143e47f83aa94d95b5e127548ea7e, type: 3}
   foodItemsToBeGenerated: 5
   numberOfFoodSpawnIntervals: 5
   distanceToBorders: 7
