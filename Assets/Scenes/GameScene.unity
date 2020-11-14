@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239ac444947af774381aa0b0e7c93f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDuration: 60
   transitionToLevelSpeed: 20.6
   backgroundStartPrefab: {fileID: 681905150031937921, guid: 06dfbd1e9b2dd15419104c285d5f558b,
     type: 3}

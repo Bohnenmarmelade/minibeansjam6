@@ -6,8 +6,13 @@ using UnityEngine.U2D;
 
 public class BackgroundController : MonoBehaviour
 {
+    
+    [SerializeField] [Range(10, 120)] private int levelDuration = 100;
+
+    public int LevelDuration => levelDuration;
+
     [SerializeField] [Range(5f, 50f)] private float transitionToLevelSpeed = 20f;
-    [SerializeField] [Range(1f, 30f)] private float scrollingSpeed = 1f;
+    private float _scrollingSpeed = 0f;
     
     public Background backgroundStartPrefab;
     public Background backgroundPrefab;
@@ -53,12 +58,13 @@ public class BackgroundController : MonoBehaviour
         float nextBackgroundPosX = _startBackground.transform.position.x + _startBackground.BackgroundImageWidth;
         _levelBackground = Instantiate(backgroundPrefab, new Vector3(nextBackgroundPosX, 0), Quaternion.identity);
 
-        StartLevel();
+        StartNextLevel();
 
     }
 
     private void Update()
     {
+        _scrollingSpeed = (_levelBackground.BackgroundImageWidth - _camWidth) / levelDuration;
         if (_state == BackgroundState.TRANSITION_TO_LEVEL)
         {
             TransitionToLevelUpdate();
@@ -87,7 +93,7 @@ public class BackgroundController : MonoBehaviour
             _state = BackgroundState.INBETWEEN;
         }
         
-        float transitionSpeed = scrollingSpeed * Time.deltaTime;
+        float transitionSpeed = transitionToLevelSpeed * Time.deltaTime;
         Vector3 levelPos = _levelBackground.transform.position;
         Vector3 startPos = _startBackground.transform.position;
         levelPos.x -= transitionSpeed;
@@ -98,7 +104,7 @@ public class BackgroundController : MonoBehaviour
 
     private void InLevelUpdate()
     {
-        float transitionSpeed = scrollingSpeed * Time.deltaTime;
+        float transitionSpeed = _scrollingSpeed * Time.deltaTime;
         Vector3 levelPos = _levelBackground.transform.position;
         Vector3 startPos = _startBackground.transform.position;
         levelPos.x -= transitionSpeed;
@@ -115,6 +121,7 @@ public class BackgroundController : MonoBehaviour
             _startBackground.transform.position = pos;
 
             Debug.Log("Level done");
+            Debug.Log("time: " + Time.time);
             EventManager.Instance.OnLevelFinished.Invoke();
             _state = BackgroundState.TRANSITION_TO_INBETWEEN;
         }
@@ -126,6 +133,7 @@ public class BackgroundController : MonoBehaviour
         {
             //done
             Debug.Log("Transition to level done");
+            Debug.Log("time: " + Time.time);
             _state = BackgroundState.IN_LEVEL;
         }
         float transitionSpeed = transitionToLevelSpeed * Time.deltaTime;
@@ -137,8 +145,9 @@ public class BackgroundController : MonoBehaviour
         _startBackground.transform.position = startPos;
     }
 
-    public void StartLevel()
+    public void StartNextLevel()
     {
+        EventManager.Instance.OnLevelStarted.Invoke();
         _state = BackgroundState.TRANSITION_TO_LEVEL;
     }
 }
