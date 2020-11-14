@@ -295,6 +295,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whale
       objectReference: {fileID: 0}
+    - target: {fileID: 168841894361756190, guid: f9805a9a5ee996a41b210afa6d2d78ba,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9d4a178ae4448374cb5bb9fd457c53a1,
+        type: 3}
+    - target: {fileID: 168841894361756190, guid: f9805a9a5ee996a41b210afa6d2d78ba,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 168841894361756190, guid: f9805a9a5ee996a41b210afa6d2d78ba,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 168841894361756190, guid: f9805a9a5ee996a41b210afa6d2d78ba,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 168841894361756190, guid: f9805a9a5ee996a41b210afa6d2d78ba,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 168841894361756191, guid: f9805a9a5ee996a41b210afa6d2d78ba,
         type: 3}
       propertyPath: m_LocalPosition.x
