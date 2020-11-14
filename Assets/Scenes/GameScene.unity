@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688316275}
   - component: {fileID: 688316274}
+  - component: {fileID: 688316276}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -150,9 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1df1efe2a822c145bb62ab0ce1cab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialBackgroundPos: {x: 2, y: 0}
-  backgroundPrefab: {fileID: 1384369471652405781, guid: d6d4f2993b7aff84798d672ebcb0e48f,
-    type: 3}
 --- !u!4 &688316275
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +165,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &688316276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688316273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239ac444947af774381aa0b0e7c93f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundPrefab: {fileID: -6389795136898821638, guid: d6d4f2993b7aff84798d672ebcb0e48f,
+    type: 3}
 --- !u!1 &1001340457
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,17 +298,17 @@ PrefabInstance:
     - target: {fileID: 168841894361756191, guid: f9805a9a5ee996a41b210afa6d2d78ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8424497
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 168841894361756191, guid: f9805a9a5ee996a41b210afa6d2d78ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7124542
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 168841894361756191, guid: f9805a9a5ee996a41b210afa6d2d78ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9179215
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 168841894361756191, guid: f9805a9a5ee996a41b210afa6d2d78ba,
         type: 3}

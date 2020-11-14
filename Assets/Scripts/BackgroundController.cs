@@ -2,59 +2,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.U2D;
 
 public class BackgroundController : MonoBehaviour
 {
-    [SerializeField]
-    [Range(.01f, 1f)]
-    private float scrollSpeed = .1f;
+    public Background backgroundPrefab;
+    private Background _currentBackground;
+    private Background _nextBackground;
 
-    private float _backgroundEndPosX;
-    
-    private bool _isScrolling = false;
-    public bool IsScrolling
+    public void Awake()
     {
-        get => _isScrolling;
-        set => _isScrolling = value;
+        _currentBackground = Instantiate(backgroundPrefab);
+        _currentBackground.IsScrolling = true;
     }
 
-    private void Awake()
+    private void FixedUpdate()
     {
-        //set background position according to camera
-        PixelPerfectCamera cam = Camera.main.GetComponent<PixelPerfectCamera>();
-        float camWidth = cam.refResolutionX / cam.assetsPPU;
-        
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        float leftEdgePosX = (camWidth / 2) - Camera.main.transform.position.x;
-        float backgroundImageWidth = spriteRenderer.bounds.size.x;
-        float backgroundStartPosX = -leftEdgePosX + (backgroundImageWidth / 2);
-
-        Debug.Log(backgroundImageWidth);
-        Debug.Log(backgroundStartPosX);
-        transform.position = new Vector2(backgroundStartPosX - 1, 0f);
-        
-        //calculate position where camera starts to lose background
-        
-        float rightEdgePosX = (camWidth / 2) + Camera.main.transform.position.x;
-        _backgroundEndPosX = rightEdgePosX - (backgroundImageWidth / 2);
-    }
-
-    void Update()
-    {
-        if (_isScrolling)
+        if (_currentBackground.isNearEnd() && _nextBackground == null)
         {
-            Vector3 pos = transform.position;
-            pos.x -= scrollSpeed;
-            transform.position = pos;
+            instantiateNextBackground();
+        } 
+        else if (_currentBackground.isOutOfCamFocus())
+        {
+            Destroy(_currentBackground.gameObject);
+            _currentBackground = _nextBackground;
+            _nextBackground = null;
         }
     }
 
-    public bool isNearEnd()
+    private void instantiateNextBackground()
     {
-        return transform.position.x - _backgroundEndPosX < 1;
+        _nextBackground = Instantiate(backgroundPrefab);
+        float nextPosX = _currentBackground.transform.position.x + (_currentBackground.BackgroundImageWidth / 2);
+
+        Vector3 nextPos = _nextBackground.transform.position;
+        nextPos.x = nextPosX;
+
+        _nextBackground.transform.position = nextPos;
+        _nextBackground.IsScrolling = true;
+
     }
 
+    public void startScrolling()
+    {
+        if (_currentBackground != null)
+        {
+            _currentBackground.IsScrolling = true;
+        }
 
+        if (_nextBackground)
+        {
+            _nextBackground.IsScrolling = true;
+        } 
+    }
+
+    public void stopScrolling()
+    {
+        if (_currentBackground != null)
+        {
+            _currentBackground.IsScrolling = false;
+        }
+        
+        if (_nextBackground)
+        {
+            _nextBackground.IsScrolling = false;
+        } 
+    }
 }
