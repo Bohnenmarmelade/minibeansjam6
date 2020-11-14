@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
         if (itemController != null && itemController.item is Garbage)
         {
             TakeDamage();
+            Destroy(other.gameObject);
         }
     }
 

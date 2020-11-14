@@ -12,6 +12,7 @@ public class PlayerGrowth : MonoBehaviour
         if (itemController != null && itemController.item is Food)
         {
             EatFood();
+            Destroy(other.gameObject);
         }
     }
 
