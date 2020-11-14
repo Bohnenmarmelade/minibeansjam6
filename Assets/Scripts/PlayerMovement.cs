@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WaleMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Range(1f, 10f)]
     public float movementSpeed;
