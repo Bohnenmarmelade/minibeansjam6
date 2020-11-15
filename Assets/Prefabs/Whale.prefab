@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 168841894361756193}
   - component: {fileID: 734215074}
   - component: {fileID: 7894120648185983126}
-  - component: {fileID: 8937272505020860446}
   m_Layer: 0
   m_Name: Whale
   m_TagString: Untagged
@@ -161,7 +160,7 @@ Animator:
   m_GameObject: {fileID: 168841894361756189}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 45248dd18867a5b43b70559be6e78c49, type: 2}
+  m_Controller: {fileID: 9100000, guid: 44735e3c861e59c459146d0e88c708c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,15 +195,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &8937272505020860446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168841894361756189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f8193c7e0d6b1c46adc132df427cbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
