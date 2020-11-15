@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc82370728bfb5b479bc72a70fef69ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfFoodUntilAdult: 2
+  numberOfFoodUntilAdult: 4
   foodEaten: 0
   adult: 0
 --- !u!114 &4425766728991970009
