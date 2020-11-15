@@ -23,7 +23,7 @@ public class PinkyMovement : MonoBehaviour
     {
         if (_transitionToDie)
         {
-            _rigidbody2D.AddForce(Vector2.left * 2f);
+            _rigidbody2D.AddForce(Vector2.left * 20f);
         }
 
     }

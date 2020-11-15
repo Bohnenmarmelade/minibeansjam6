@@ -12,7 +12,7 @@ public class Score : Singleton<Score>
     void Start()
     {
         levels = 0;
-        EventManager.Instance.OnLevelFinished.AddListener(UpdateLevelScore);
+        EventManager.Instance.OnAddScore.AddListener(UpdateLevelScore);
         EventManager.Instance.OnPlayerDeath.AddListener(OnPlayerDeath);
     }
 

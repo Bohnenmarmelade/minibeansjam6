@@ -53,14 +53,13 @@ public class LevelController : MonoBehaviour
         if (_playerIsAdult)
         {
             Debug.Log("level finished!");
+            EventManager.Instance.OnAddScore.Invoke();
             _level++;
             _playerIsAdult = false;
             
             //instantiate next whale
             Debug.Log("PINKY!");
             _pinky = Instantiate(pinkyPrefab, new Vector2(20, 0), quaternion.identity);
-            
-            //_nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
 
             _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
 
@@ -76,6 +75,7 @@ public class LevelController : MonoBehaviour
         else
         {
             Debug.Log("you lost!");
+            EventManager.Instance.OnPlayerDeath.Invoke();
             _backgroundController.LevelDuration = levelDuration;
         }
 
@@ -90,7 +90,7 @@ public class LevelController : MonoBehaviour
             {
                 _transition = false;
                 _nextPlayer = Instantiate(playerPrefab, new Vector3(-2, -1), Quaternion.identity);
-                _nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
+                _nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = true;
                 _pinkyMeetTime = Time.time;
                 _prepareNextPlayer = true;
                 return;

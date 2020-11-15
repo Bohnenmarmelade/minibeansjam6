@@ -14,4 +14,6 @@ public class EventManager : Singleton<EventManager>
     public UnityEvent OnAteGarbage { get; } = new UnityEvent();
     
     public UnityEvent OnStartGame { get; } = new UnityEvent();
+    
+    public UnityEvent OnAddScore { get; } = new UnityEvent();
 }
