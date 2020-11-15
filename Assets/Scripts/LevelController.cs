@@ -67,7 +67,7 @@ public class LevelController : MonoBehaviour
                 
                 //give control over next whale && start next level
                 _currentPlayer.GetComponent<PlayerMovement>().TransitionToDie = true;
-                Destroy(_currentPlayer, 1);
+                Destroy(_currentPlayer, .5f);
                 _currentPlayer = _nextPlayer;
                 _nextPlayer = null;
                 _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = true;
@@ -75,7 +75,7 @@ public class LevelController : MonoBehaviour
                 return;
             }
             
-            if (_currentPlayer.GetComponent<PlayerMovement>().TransitionToDie) {            
+            if (!_currentPlayer.GetComponent<PlayerMovement>().TransitionToDie) {            
                 var currentPos = _currentPlayer.transform.position;
                 currentPos = Vector2.MoveTowards(currentPos, _currentPlayerMeetPosition, 5 *Time.deltaTime);
                 _currentPlayer.transform.position = currentPos;

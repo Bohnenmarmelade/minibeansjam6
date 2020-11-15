@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_transitionToDie)
         {
-            _rigidbody2D.AddForce(Vector2.left * accelerationMultiplier * .2f);
+            _rigidbody2D.AddForce(Vector2.left * 1f);
         } else {
             _movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
@@ -79,21 +79,17 @@ public class PlayerMovement : MonoBehaviour
         float maxY = camPos.y + _camHeight * .5f - _boundaryMargin;
         if (pos.x < minX)
         {
-            Debug.Log("1");
             pos.x = minX;
         } else if (pos.x > maxX)
         {
-            Debug.Log("2");
             pos.x = maxX;
         }
 
         if (pos.y < minY)
         {
-            Debug.Log("3");
             pos.y = minY;
         } else if (pos.y > maxY)
         {
-            Debug.Log("4");
             pos.y = maxY;
         }
 
