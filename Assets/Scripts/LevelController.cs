@@ -9,6 +9,10 @@ using Vector3 = UnityEngine.Vector3;
 
 public class LevelController : MonoBehaviour
 {
+    public int levelDuration = 60;
+    public int minLevelDuration = 20;
+    public int levelDurationDecrease = 10;
+    
     public GameObject playerPrefab;
     public GameObject pinkyPrefab;
     
@@ -33,6 +37,7 @@ public class LevelController : MonoBehaviour
     private void Awake()
     {
         _backgroundController = GetComponent<BackgroundController>();
+        _backgroundController.LevelDuration = levelDuration;
         _currentPlayer = Instantiate(playerPrefab, new Vector2(-2, 0), Quaternion.identity);
         
         EventManager eventManager = EventManager.Instance;
@@ -60,12 +65,21 @@ public class LevelController : MonoBehaviour
             _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
 
             _transition = true;
+
+            var l = _backgroundController.LevelDuration;
+            if (l - levelDurationDecrease > minLevelDuration)
+            {
+                _backgroundController.LevelDuration = l - levelDurationDecrease;
+            }
+                
         }
         else
         {
             Debug.Log("you lost!");
+            _backgroundController.LevelDuration = levelDuration;
         }
-        
+
+
     }
 
     private void Update()

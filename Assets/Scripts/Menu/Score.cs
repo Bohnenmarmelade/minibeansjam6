@@ -23,7 +23,6 @@ public class Score : Singleton<Score>
 
     private void OnPlayerDeath()
     {
-        levels--;
         SceneManager.LoadScene(2);
     }
     

@@ -16,8 +16,6 @@ public class PlayerGrowth : MonoBehaviour
                 EatFood();
                 Destroy(other.gameObject, .1f);
             }
-            
-
     }
 
     private void EatFood()
@@ -37,6 +35,7 @@ public class PlayerGrowth : MonoBehaviour
         if (foodEaten >= numberOfFoodUntilAdult)
         {
             GetComponent<Animator>().SetBool(IsAdult, true);
+            GetComponent<Animator>().SetTrigger("GrowUp");
             adult = true;
             EventManager.Instance.OnPlayerAdult.Invoke();
         }

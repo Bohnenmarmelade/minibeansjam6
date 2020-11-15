@@ -7,9 +7,13 @@ using UnityEngine.U2D;
 public class BackgroundController : MonoBehaviour
 {
     
-    [SerializeField] [Range(10, 120)] private int levelDuration = 100;
+    private int levelDuration;
 
-    public int LevelDuration => levelDuration;
+    public int LevelDuration
+    {
+        get => levelDuration;
+        set => levelDuration = value;
+    }
 
     [SerializeField] [Range(5f, 50f)] private float transitionToLevelSpeed = 20f;
     private float _scrollingSpeed = 0f;

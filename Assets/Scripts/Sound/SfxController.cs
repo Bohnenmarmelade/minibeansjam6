@@ -11,6 +11,7 @@ public class SfxController : MonoBehaviour
     public AudioClip winLevel;
     public AudioClip death;
     public AudioClip buttonPress;
+    public AudioClip growUp;
     
     private AudioSource _source;
 
@@ -27,8 +28,23 @@ public class SfxController : MonoBehaviour
         eventManager.OnAteGarbage.AddListener(HandleEatGarbage);
         eventManager.OnPlayerDeath.AddListener(HandleDeath);
         eventManager.OnStartGame.AddListener(HandleButtonPress);
+        eventManager.OnPlayerAdult.AddListener(HandleGrowUp);
     }
 
+    private void OnDisable()
+    {
+        EventManager eventManager = EventManager.Instance;
+        eventManager.OnAteItem.RemoveListener(HandleEatItem);
+        eventManager.OnAteGarbage.RemoveListener(HandleEatGarbage);
+        eventManager.OnPlayerDeath.RemoveListener(HandleDeath);
+        eventManager.OnStartGame.RemoveListener(HandleButtonPress);
+        eventManager.OnPlayerAdult.RemoveListener(HandleGrowUp);
+    }
+
+    private void HandleGrowUp()
+    {
+        _source.PlayOneShot(growUp);
+    }
     private void HandleButtonPress()
     {
         _source.PlayOneShot(buttonPress);

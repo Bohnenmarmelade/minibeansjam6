@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!GetComponent<PlayerMovement>().PlayerHasControl)
+        {
+            return;
+        }
         ItemController itemController = other.GetComponent<ItemController>();
         if (itemController != null && itemController.item is Garbage)
         {
