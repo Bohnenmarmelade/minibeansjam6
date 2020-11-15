@@ -5,7 +5,6 @@ public class PlayerGrowth : MonoBehaviour
     public int numberOfFoodUntilAdult = 10;
     [SerializeField] private int foodEaten = 0;
     [SerializeField] private bool adult = false;
-    private static readonly int EatItem = Animator.StringToHash("EatItem");
     private static readonly int IsAdult = Animator.StringToHash("isAdult");
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,7 +22,9 @@ public class PlayerGrowth : MonoBehaviour
 
     private void EatFood()
     {
-        GetComponent<Animator>().SetTrigger(EatItem);
+        Debug.Log("eat!");
+        GetComponent<Animator>().SetTrigger("EatItem");
+        Debug.Log(GetComponent<Animator>().parameters);
         foodEaten++;
         CheckGrowth();
     }

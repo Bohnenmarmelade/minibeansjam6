@@ -18,7 +18,10 @@ public class PlayerHealth : MonoBehaviour
     private void TakeDamage()
     {
         GetComponent<Animator>().SetTrigger(EatGarbage);
+        
         health--;
+        GetComponent<Animator>().SetInteger("damageLevel", 3 - health);
+
         CheckDeath();
     }
 
