@@ -24,6 +24,7 @@ public class PlayerGrowth : MonoBehaviour
     {
         Debug.Log("eat!");
         GetComponent<Animator>().SetTrigger("EatItem");
+        EventManager.Instance.OnAteItem.Invoke();
         Debug.Log(GetComponent<Animator>().parameters);
         foodEaten++;
         CheckGrowth();

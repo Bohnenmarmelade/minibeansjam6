@@ -20,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Animator>().SetTrigger(EatGarbage);
         
         health--;
+        
+        EventManager.Instance.OnAteGarbage.Invoke();
         GetComponent<Animator>().SetInteger("damageLevel", 3 - health);
 
         CheckDeath();

@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_transitionToDie)
         {
-            _rigidbody2D.AddForce(Vector2.left * 1f);
+            _rigidbody2D.AddForce(Vector2.left * 2f);
         } else {
             _movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }

@@ -39,6 +39,8 @@ public class LevelController : MonoBehaviour
         eventManager.OnPlayerDeath.AddListener(HandlePlayerDeath);
         eventManager.OnLevelFinished.AddListener(HandleLevelFinished);
         eventManager.OnPlayerAdult.AddListener(HandleAdult);
+        
+        eventManager.OnStartGame.Invoke();
     }
 
     private void HandleLevelFinished()

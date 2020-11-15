@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDuration: 30
-  transitionToLevelSpeed: 20.6
+  transitionToLevelSpeed: 10
   backgroundStartPrefab: {fileID: 681905150031937921, guid: 06dfbd1e9b2dd15419104c285d5f558b,
     type: 3}
   backgroundPrefab: {fileID: -6389795136898821638, guid: d6d4f2993b7aff84798d672ebcb0e48f,
