@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 35388c33d28008e4297bd49a8654eb5f, type: 2}
-  speed: 1
+  speed: 3

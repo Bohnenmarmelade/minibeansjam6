@@ -21,9 +21,23 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera _mainCam;
     private float _camWidth;
-    private float _camHeight; 
-    
-    
+    private float _camHeight;
+
+    private bool _playerHasControl = true;
+    private bool _transitionToDie = false;
+
+    public bool TransitionToDie
+    {
+        get => _transitionToDie;
+        set => _transitionToDie = value;
+    }
+
+    public bool PlayerHasControl
+    {
+        get => _playerHasControl;
+        set => _playerHasControl = value;
+    }
+
     private Rigidbody2D _rigidbody2D;
 
     private void Awake()
@@ -38,18 +52,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        _movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (_transitionToDie)
+        {
+            _rigidbody2D.AddForce(Vector2.left * accelerationMultiplier * .2f);
+        } else {
+            _movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
     }
 
     private void FixedUpdate()
     {
-        Move(_movement);
-        CheckBoundaries();
+        if (_playerHasControl)
+        {
+            Move(_movement);
+            CheckBoundaries();
+        }
     }
 
     private void CheckBoundaries()
     {
-        //TODO: this is bad
         Vector3 pos = transform.position;
         Vector3 camPos = _mainCam.transform.position;
         float minX = camPos.x - _camWidth * .5f + _boundaryMargin;
@@ -58,17 +79,21 @@ public class PlayerMovement : MonoBehaviour
         float maxY = camPos.y + _camHeight * .5f - _boundaryMargin;
         if (pos.x < minX)
         {
+            Debug.Log("1");
             pos.x = minX;
         } else if (pos.x > maxX)
         {
+            Debug.Log("2");
             pos.x = maxX;
         }
 
         if (pos.y < minY)
         {
+            Debug.Log("3");
             pos.y = minY;
         } else if (pos.y > maxY)
         {
+            Debug.Log("4");
             pos.y = maxY;
         }
 

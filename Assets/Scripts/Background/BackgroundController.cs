@@ -76,7 +76,7 @@ public class BackgroundController : MonoBehaviour
             TransitionToInbetweenUpdate();
         } else if (_state == BackgroundState.INBETWEEN)
         {
-            _state = BackgroundState.TRANSITION_TO_LEVEL;
+            
         }
     }
 
@@ -121,7 +121,6 @@ public class BackgroundController : MonoBehaviour
             _startBackground.transform.position = pos;
 
             Debug.Log("Level done");
-            Debug.Log("time: " + Time.time);
             EventManager.Instance.OnLevelFinished.Invoke();
             _state = BackgroundState.TRANSITION_TO_INBETWEEN;
         }
@@ -131,9 +130,7 @@ public class BackgroundController : MonoBehaviour
     {
         if (_levelBackground.transform.transform.position.x - 1 < _camLeftEdgePosX)
         {
-            //done
             Debug.Log("Transition to level done");
-            Debug.Log("time: " + Time.time);
             _state = BackgroundState.IN_LEVEL;
         }
         float transitionSpeed = transitionToLevelSpeed * Time.deltaTime;
@@ -147,7 +144,15 @@ public class BackgroundController : MonoBehaviour
 
     public void StartNextLevel()
     {
+        Debug.Log("start next level");
         EventManager.Instance.OnLevelStarted.Invoke();
-        _state = BackgroundState.TRANSITION_TO_LEVEL;
+        _state = BackgroundState.TRANSITION_TO_LEVEL; 
+    }
+
+    public void EndThisLevel()
+    {
+        Debug.Log("End this level");
+        EventManager.Instance.OnLevelFinished.Invoke();
+        _state = BackgroundState.TRANSITION_TO_INBETWEEN;
     }
 }

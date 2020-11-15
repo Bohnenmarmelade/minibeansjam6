@@ -3,19 +3,21 @@
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 3;
+    private static readonly int EatGarbage = Animator.StringToHash("EatGarbage");
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         ItemController itemController = other.GetComponent<ItemController>();
         if (itemController != null && itemController.item is Garbage)
         {
             TakeDamage();
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, .1f);
         }
     }
 
     private void TakeDamage()
     {
+        GetComponent<Animator>().SetTrigger(EatGarbage);
         health--;
         CheckDeath();
     }
