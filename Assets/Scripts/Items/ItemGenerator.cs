@@ -97,6 +97,7 @@ public class ItemGenerator : MonoBehaviour
         if (Time.time >= timeUntilNextFoodSpawn)
         {
             timeUntilNextFoodSpawn = timeOfFoodSpawnInterval + Time.time;
+            generateFood = true;
         }
     }
 
