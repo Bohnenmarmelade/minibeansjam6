@@ -29,6 +29,7 @@ public class ItemGenerator : MonoBehaviour
     private int foodItemsPerInterval = 0;
     private int foodItemsGeneratedInInterval = 0;
     private bool generateFood = true;
+    private float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,7 @@ public class ItemGenerator : MonoBehaviour
     private void OnLevelFinished()
     {
         generationAllowed = false;
+        speed += 1.5f;
     }
 
     private void OnLevelStarted()
@@ -234,6 +236,8 @@ public class ItemGenerator : MonoBehaviour
         
         //move item up or down depending on previously spawned platform
         go.transform.position += new Vector3(0, Random.Range(lowerBounds, upperBounds), 0);
+
+        go.GetComponent<ItemController>().speed = speed;
 
         return go;
     }
