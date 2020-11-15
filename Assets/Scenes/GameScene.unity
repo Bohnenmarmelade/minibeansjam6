@@ -227,6 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 168841894361756189, guid: f9805a9a5ee996a41b210afa6d2d78ba,
     type: 3}
+  pinkyPrefab: {fileID: 3795080496754129366, guid: cda72f21063db774da0458268ea024c6,
+    type: 3}
 --- !u!4 &688316275
 Transform:
   m_ObjectHideFlags: 0

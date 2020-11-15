@@ -10,11 +10,16 @@ using Vector3 = UnityEngine.Vector3;
 public class LevelController : MonoBehaviour
 {
     public GameObject playerPrefab;
+    public GameObject pinkyPrefab;
+    
     private GameObject _currentPlayer;
     private GameObject _nextPlayer;
-
+    private GameObject _pinky;
+    
+    
     private Vector2 _nextPlayerMeetPosition = Vector2.zero;
-    private Vector2 _currentPlayerMeetPosition = new Vector2(-5, 0);
+    private Vector2 _currentPlayerMeetPosition = new Vector2(-2, 0);
+    
     
     private BackgroundController _backgroundController;
 
@@ -22,11 +27,13 @@ public class LevelController : MonoBehaviour
     private bool _playerIsAdult = false;
 
     private bool _transition = false;
+    private bool _prepareNextPlayer = false;
+    private float _pinkyMeetTime = 0;
     
     private void Awake()
     {
         _backgroundController = GetComponent<BackgroundController>();
-        _currentPlayer = Instantiate(playerPrefab, new Vector2(-5, 0), Quaternion.identity);
+        _currentPlayer = Instantiate(playerPrefab, new Vector2(-2, 0), Quaternion.identity);
         
         EventManager eventManager = EventManager.Instance;
         eventManager.OnPlayerDeath.AddListener(HandlePlayerDeath);
@@ -43,8 +50,10 @@ public class LevelController : MonoBehaviour
             _playerIsAdult = false;
             
             //instantiate next whale
-            _nextPlayer = Instantiate(playerPrefab, new Vector2(20, 0), quaternion.identity);
-            _nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
+            Debug.Log("PINKY!");
+            _pinky = Instantiate(pinkyPrefab, new Vector2(20, 0), quaternion.identity);
+            
+            //_nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
 
             _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
 
@@ -59,19 +68,15 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        if (_transition)
+        if (_transition && !_prepareNextPlayer)
         {
-            if (Vector2.Distance(_nextPlayer.transform.position, _nextPlayerMeetPosition) < .1)
+            if (Vector2.Distance(_pinky.transform.position, _nextPlayerMeetPosition) < .1)
             {
                 _transition = false;
-                
-                //give control over next whale && start next level
-                _currentPlayer.GetComponent<PlayerMovement>().TransitionToDie = true;
-                Destroy(_currentPlayer, .5f);
-                _currentPlayer = _nextPlayer;
-                _nextPlayer = null;
-                _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = true;
-                _backgroundController.StartNextLevel();
+                _nextPlayer = Instantiate(playerPrefab, new Vector3(-2, -1), Quaternion.identity);
+                _nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
+                _pinkyMeetTime = Time.time;
+                _prepareNextPlayer = true;
                 return;
             }
             
@@ -81,9 +86,33 @@ public class LevelController : MonoBehaviour
                 _currentPlayer.transform.position = currentPos;
             }
             
-            var nextPos = _nextPlayer.transform.position;
+            var nextPos = _pinky.transform.position;
             nextPos = Vector2.MoveTowards(nextPos, _nextPlayerMeetPosition, 5 * Time.deltaTime);
-            _nextPlayer.transform.position = nextPos;
+            _pinky.transform.position = nextPos;
+        } else if (_prepareNextPlayer)
+        {
+            if (Time.time - _pinkyMeetTime > 1)
+            {
+                
+                Debug.Log(1);
+                
+                _currentPlayer.GetComponent<PlayerMovement>().TransitionToDie = true;
+                _pinky.GetComponent<PinkyMovement>().TransitionToDie = true;
+                Destroy(_currentPlayer, 1f);
+                Destroy(_pinky, 1f);
+                _currentPlayer = _nextPlayer;
+                _nextPlayer = null;
+                _pinky = null;
+                _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = true;
+                _backgroundController.StartNextLevel();
+
+                _prepareNextPlayer = false;
+                _transition = false;
+                
+                _backgroundController.StartNextLevel();
+                
+                Debug.Log(2);
+            }   
         }
     }
 
@@ -96,18 +125,6 @@ public class LevelController : MonoBehaviour
         Debug.Log("player died. reached level: " + _level);
         _level = 0;
         _playerIsAdult = false;
-            
-        //instantiate next whale
-        _nextPlayer = Instantiate(playerPrefab, new Vector2(20, 0), quaternion.identity);
-        _nextPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
-
-        _currentPlayer.GetComponent<PlayerMovement>().PlayerHasControl = false;
-        _currentPlayer.GetComponent<PlayerMovement>().TransitionToDie = true;
-
-        _transition = true;
-
-        _backgroundController.EndThisLevel();
-
     }
 
     public int LevelDuration()
