@@ -41,7 +41,7 @@ public class ItemGenerator : MonoBehaviour
         foodItemsPerInterval = Mathf.CeilToInt(foodItemsToBeGenerated / numberOfFoodSpawnIntervals);
 
         EventManager.Instance.OnLevelFinished.AddListener(OnLevelFinished);
-        EventManager.Instance.OnLevelStarted.AddListener(OnLevelStarted);
+        EventManager.Instance.OnLevelPositionReached.AddListener(OnLevelStarted);
     }
 
     // Update is called once per frame

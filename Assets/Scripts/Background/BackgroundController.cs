@@ -135,6 +135,7 @@ public class BackgroundController : MonoBehaviour
         if (_levelBackground.transform.transform.position.x - 1 < _camLeftEdgePosX)
         {
             Debug.Log("Transition to level done");
+            EventManager.Instance.OnLevelPositionReached.Invoke();
             _state = BackgroundState.IN_LEVEL;
         }
         float transitionSpeed = transitionToLevelSpeed * Time.deltaTime;
