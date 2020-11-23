@@ -8,6 +8,13 @@ public class PlayerGrowth : MonoBehaviour
     [SerializeField] private bool adult = false;
     private static readonly int IsAdult = Animator.StringToHash("isAdult");
 
+    private PlayerMovement _playerMovement;
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
+
     private void Update()
     {
         if (Time.time % 10 == 0)
@@ -19,7 +26,7 @@ public class PlayerGrowth : MonoBehaviour
     {
         
         ItemController itemController = other.GetComponent<ItemController>();
-            if (itemController != null && itemController.item is Food)
+            if (_playerMovement.PlayerHasControl && itemController != null && itemController.item is Food)
             {
                 EatFood();
                 Destroy(other.gameObject, .1f);
