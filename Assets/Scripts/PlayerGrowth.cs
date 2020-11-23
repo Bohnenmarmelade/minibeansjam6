@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerGrowth : MonoBehaviour
 {
@@ -6,6 +7,13 @@ public class PlayerGrowth : MonoBehaviour
     [SerializeField] private int foodEaten = 0;
     [SerializeField] private bool adult = false;
     private static readonly int IsAdult = Animator.StringToHash("isAdult");
+
+    private void Update()
+    {
+        if (Time.time % 10 == 0)
+        {
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,6 +28,7 @@ public class PlayerGrowth : MonoBehaviour
 
     private void EatFood()
     {
+        
         Debug.Log("eat!");
         GetComponent<Animator>().SetTrigger("EatItem");
         EventManager.Instance.OnAteItem.Invoke();
@@ -36,6 +45,9 @@ public class PlayerGrowth : MonoBehaviour
         {
             GetComponent<Animator>().SetBool(IsAdult, true);
             GetComponent<Animator>().SetTrigger("GrowUp");
+            var animator = GetComponent<Animator>();
+            var dmgLvl = animator.GetInteger("damageLevel");
+            animator.SetInteger("damageLevel", dmgLvl);
             adult = true;
             EventManager.Instance.OnPlayerAdult.Invoke();
         }

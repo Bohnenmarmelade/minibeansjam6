@@ -225,6 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1df1efe2a822c145bb62ab0ce1cab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDuration: 60
+  minLevelDuration: 20
+  levelDurationDecrease: 10
   playerPrefab: {fileID: 168841894361756189, guid: f9805a9a5ee996a41b210afa6d2d78ba,
     type: 3}
   pinkyPrefab: {fileID: 3795080496754129366, guid: cda72f21063db774da0458268ea024c6,
@@ -255,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239ac444947af774381aa0b0e7c93f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 10
   transitionToLevelSpeed: 10
   backgroundStartPrefab: {fileID: 681905150031937921, guid: 06dfbd1e9b2dd15419104c285d5f558b,
     type: 3}
@@ -362,7 +364,7 @@ MonoBehaviour:
   m_RefResolutionY: 240
   m_UpscaleRT: 0
   m_PixelSnapping: 1
-  m_CropFrameX: 0
+  m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 0
 --- !u!1 &1069930211
